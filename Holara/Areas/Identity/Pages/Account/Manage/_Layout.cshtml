@@ -1,0 +1,17 @@
+﻿@{ 
+    //Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="container">
+    <h4>Manage your Account</h4>
+    <div class="panel-footer">
+        <div class="row">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

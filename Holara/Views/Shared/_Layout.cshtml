@@ -1,0 +1,87 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject UserManager<IdentityUser> _userManager
+@inject SignInManager<IdentityUser> SignInManager
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Holara</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="~/lib/Skeleton/images/logo.png">
+
+    <environment include="Development">
+        <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="~/lib/Skeleton/css/style.css">
+        <link rel="stylesheet" href="~/lib/Skeleton/css/normalize.css">
+        <link rel="stylesheet" href="~/lib/Skeleton/css/skeleton.css">
+        <link rel="stylesheet" href="~/lib/Skeleton/css/animate.css">
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="~/lib/Skeleton/css/style.css">
+        <link rel="stylesheet" href="~/lib/Skeleton/css/normalize.css">
+        <link rel="stylesheet" href="~/lib/Skeleton/css/skeleton.css">
+        <link rel="stylesheet" href="~/lib/Skeleton/css/animate.css">
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+</head>
+<body>
+    <!--Navigation-->
+    <nav class="navigation sticky">
+        <ul>
+            <li class="nav-brand animated heartBeat logo"><a asp-area="User" asp-controller="Home" asp-action="Index">Holara</a></li>
+
+            @if (!SignInManager.IsSignedIn(User))
+            {
+                
+                <partial name="_LoginPartial" />
+            }
+            else
+            {
+                <li><a asp-area="User" asp-controller="Post" asp-action="Index">Timeline</a></li>
+            }
+        </ul>
+    </nav>
+    <!--Section 1-->
+    <section class="section1">
+        <div>
+            <div class="row">
+                <div class="nine columns col1 animated slideInUp">
+                    @RenderBody()
+                </div>
+                <div class="three columns col3 ads1">
+                    <div class="container asd2">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <a class="button button-primary" style="margin-top: 30px;" asp-area="User" asp-controller="Post" asp-action="Create">Add New Post</a>
+                        }
+
+                        <div style="margin-top:25px !important;" class="panel-header1 animated bounceInRight ads3">
+                            <img src="https://image.shutterstock.com/image-vector/potato-chips-advertisement-spicy-flavor-260nw-642316276.jpg" class="ad-image" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <environment include="Development">
+        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+        <script src="~/lib/Skeleton/js/script.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+        <script src="~/lib/Skeleton/js/script.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

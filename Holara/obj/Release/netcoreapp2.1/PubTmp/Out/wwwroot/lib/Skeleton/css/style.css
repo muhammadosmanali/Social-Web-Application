@@ -1,0 +1,230 @@
+
+/*Navigation*/
+.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    /*box-shadow: x-axis y-axis blur color;*/
+    -webkit-box-shadow: 0 2px 2px #e3e3e3;
+    box-shadow: 0 2px 2px #e3e3e3;
+    z-index: 9999;
+}
+
+
+
+.navigation {
+    padding: 22px 40px;
+    background-color: #94e0f7;
+    border: 1px solid #6fcce8;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.navigationfor {
+    padding: 0px 40px;
+    background-color: #94e0f7;
+    border: 1px solid #6fcce8;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+    .navigation ul li {
+        float: left;
+        list-style: none;
+        margin: 0px 25px;
+        display: inline-block;
+    }
+
+        .navigation ul li a {
+            text-decoration: none;
+            color: black;
+        }
+
+            .navigation ul li a:hover {
+                color: white;
+                transition: color 0.3s;
+            }
+
+.navigationfor ul li {
+    float: left;
+    list-style: none;
+    margin: 0px 25px;
+    display: inline-block;
+}
+
+    .navigationfor ul li a {
+        text-decoration: none;
+        color: black;
+    }
+
+        .navigationfor ul li a:hover {
+            color: white;
+            transition: color 0.3s;
+        }
+
+.logo a:hover {
+    color: white;
+    transition: color 0.3s;
+    border-bottom: 1px solid #555;
+    border-bottom-right-radius: 7px;
+}
+
+.nav-brand {
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/*Section 1*/
+.section1 {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-left: 2px solid #6fcce8;
+    border-right: 2px solid #6fcce8;
+    padding-top: 100px;
+}
+
+.button-danger {
+    background-color: #ff4040 !important;
+    color: #faf0f0 !important;
+}
+
+.text-danger {
+    color: #ff4040;
+}
+
+.button-warning {
+    background-color: #e6e20b !important;
+    color: #262424 !important;
+}
+
+.button-success {
+    background-color: #36C012 !important;
+    color: #faf0f0 !important;
+}
+
+.col1 {
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.col1-temp {
+    padding-left: -100px;
+}
+
+.col3 {
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 50px;
+}
+
+.panel-header {
+    border: 1px solid #0a85a8;
+    border-radius: 10px;
+    margin-top: 30px;
+    padding: 35px;
+}
+
+.panel-header1 {
+    border: 1px solid #0a85a8;
+    border-radius: 10px;
+    margin-top: 30px;
+    padding: 5px;
+}
+
+.panel-body1 {
+    border-left: 1px solid #a0acb0;
+    border-right: 1px solid #a0acb0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    padding: 10px;
+    text-align: center;
+}
+
+.panel-body2 {
+    border-bottom: 1px solid #a0acb0;
+    border-left: 1px solid #a0acb0;
+    border-right: 1px solid #a0acb0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    padding: 10px;
+    text-align: center;
+}
+
+.post-image {
+    border-radius: 5px;
+    width: 60%;
+    height: 60%;
+}
+
+.post-desc {
+    padding:5px 50px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.ad-image {
+    width: 100%;
+    height:100%;
+    border-radius:10px;
+}
+
+.panel-footer {
+    border: 1px solid #0a85a8;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+.dropdown-div {
+    float: right;
+    margin-top: -20px;
+}
+
+.select-for {
+    float: right;
+    margin-top: -25px;
+}
+
+.select-for1 {
+    margin-top: -12px;
+}
+
+
+.profile-pic {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    float: left;
+    margin-top: -25px;
+}
+
+.profile-pic-2 {
+    margin-left: 45px;
+    border-radius:50%;
+    width: 100px;
+    height: 100px;
+}
+
+.user-name {
+    font-size: 12px;
+    margin-left: 10px;
+    margin-top: -8px;
+    float: left;
+    letter-spacing: 0.7px;
+}
+
+.date {
+    font-size: 8px;
+}
+
+
+/*Drop down*/

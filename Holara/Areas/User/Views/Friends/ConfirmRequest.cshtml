@@ -1,0 +1,56 @@
+﻿@model Holara.Models.ViewModel.FriendsViewModel
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "ConfirmRequest";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+@{
+    var userStatus = "";
+    var userId = 0;
+    foreach (var users in Model.friends)
+    {
+        if (users.User1Id == UserManager.GetUserId(User) && users.User2Id == Model.applicationUser.Id && !users.IsConfirmed)
+        {
+            userStatus = "Request Sended";
+            userId = users.Id;
+        }
+        if(users.User1Id == UserManager.GetUserId(User) && users.User2Id == Model.applicationUser.Id && users.IsConfirmed)
+        {
+            userStatus = "Friends";
+        }
+        if(users.User2Id == UserManager.GetUserId(User) && users.User1Id == Model.applicationUser.Id && users.IsConfirmed)
+        {
+            userStatus = "Friends";
+        }
+    }
+
+}
+
+<form method="post">
+    <div class="container">
+        <h4>Are you sure, you want to send request to @Model.applicationUser.Name?</h4>
+        <div class="panel-footer">
+            @if (userStatus == "")
+            {
+                <button type="submit" class="button button-primary" asp-route-id="@Model.applicationUser.Id">Send Request</button>
+            }
+            else if (userStatus == "Request Sended")
+            {
+                <button class="button button-warning" disabled>Request Sended</button>
+                <a class="button" asp-action="CancelRequest" asp-route-id="@userId">Cancel</a>
+            }
+            else if (userStatus == "Friends")
+            {
+                <button class="button button-success" disabled>Friends</button>
+
+            }
+
+            <a class="button" asp-action="UserDetail" asp-route-id="@Model.applicationUser.Id">Back to @Model.applicationUser.Name Detail</a>
+        </div>
+    </div>
+</form>
+

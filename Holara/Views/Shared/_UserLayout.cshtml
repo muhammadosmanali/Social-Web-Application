@@ -1,0 +1,165 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject UserManager<IdentityUser> _userManager
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Holara</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="~/lib/Skeleton/images/logo.png">
+    <style>
+        .dropdown {
+            float: left;
+            overflow: hidden;
+            margin-left: -30px;
+        }
+
+            .dropdown .dropbtn {
+                font-size: 12px;
+                border: none;
+                outline: none;
+                color: black;
+                background-color: inherit;
+                margin-top: -10px;
+            }
+            .dropbtn a {
+                text-decoration:none;
+                color:black;
+            }
+
+            
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .badge {
+            position:relative;
+        }
+
+        .badge[data-badge]:after {
+            content:attr(data-badge);
+            position:absolute;
+            margin-left:7px;
+            color:black;
+
+        }
+        .zoom:hover {
+            transform:scale(2.5);
+            transition: transform 0.4s;
+        }
+        #notification {
+            text-align:center;
+        }
+        .notify {
+            color: red;
+            font-size:16px;
+            letter-spacing:1px;
+            text-transform:uppercase;
+        }
+    </style>
+
+    <environment include="Development">
+        <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="~/lib/Skeleton/css/normalize.css">
+        <link rel="stylesheet" href="~/lib/Skeleton/css/skeleton.css">
+        <link rel="stylesheet" href="~/lib/Skeleton/css/style.css">
+        <link rel="stylesheet" href="~/lib/Skeleton/css/animate.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/r-2.2.2/datatables.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="~/lib/Skeleton/css/normalize.css">
+        <link rel="stylesheet" href="~/lib/Skeleton/css/skeleton.css">
+        <link rel="stylesheet" href="~/lib/Skeleton/css/style.css">
+        <link rel="stylesheet" href="~/lib/Skeleton/css/animate.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/r-2.2.2/datatables.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+
+    </environment>
+</head>
+<body>
+    <!--Navigation-->
+    <nav class="navigationfor sticky">
+        <ul>
+            <li class="nav-brand animated heartBeat logo"><a asp-area="User" asp-controller="Cover" asp-action="Index">Holara</a></li>
+            <li class="animated bounceInDown"><a asp-area="User" asp-controller="Post" asp-action="Index">Timeline</a></li>
+            <li class="animated bounceInUp"><a asp-area="User" asp-controller="Profile" asp-action="Index">Profile</a></li>
+            <li class="animated bounceInDown" style="margin-left:60px;">
+                <div class="dropdown">
+                    <a class="dropbtn" style="font-size:15px; ">Friends</a>
+                    <div class="dropdown-content">
+                        <a asp-area="User" asp-controller="Friends" asp-action="Index">Find Friends</a>
+                        <a asp-area="User" asp-controller="FriendsList" asp-action="Index">Friends List</a>
+                        <a asp-area="User" asp-controller="FriendRequest" asp-action="Index">Friend Requests</a>
+                    </div>
+                </div>
+            </li>
+            <partial name="_LoginPartial" />
+        </ul>
+    </nav>
+    <!--Section 1-->
+    <section class="section1">
+        <div>
+            <div class="row">
+                <div class="nine columns col1 animated slideInUp">
+                    @RenderBody()
+                </div>
+                <div class="three columns col3 ads1">
+                    <div class="container asd2">
+                        <a class="button button-primary" style="margin-top: 30px;" asp-area="User" asp-controller="Post" asp-action="Create">Add New Post</a>
+                        <div style="margin-top:8px !important;" class="panel-header1 animated bounceInRight ads3">
+                            <img src="https://image.shutterstock.com/image-vector/potato-chips-advertisement-spicy-flavor-260nw-642316276.jpg" class="ad-image" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <environment include="Development">
+        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+        <script src="~/lib/Skeleton/js/script.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+        <script src="~/lib/Skeleton/js/script.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
+    </environment>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

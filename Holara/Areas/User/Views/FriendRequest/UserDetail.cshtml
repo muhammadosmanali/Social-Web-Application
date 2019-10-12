@@ -1,0 +1,42 @@
+﻿@model  Holara.Models.ApplicationUser
+@{
+    ViewData["Title"] = "UserDetail";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="container">
+    <h4>@Model.Name 's  Detail</h4>
+    <div class="panel-header">
+        <div class="row">
+            <div class="eight columns">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" readonly class="u-full-width" />
+                <label asp-for="Email"></label>
+                <input asp-for="Email" readonly class="u-full-width" />
+                @if (Model.PhoneNumber == null)
+                {
+                    <label asp-for="PhoneNumber">Phone Number</label>
+                    <input placeholder="No Phone Number Added yet.." asp-for="PhoneNumber" readonly class="u-full-width" />
+                }
+                else
+                {
+                    <label asp-for="PhoneNumber">Phone Number</label>
+                    <input asp-for="PhoneNumber" readonly class="u-full-width" />
+                }
+                <label asp-for="CreatedDate"></label>
+                @Html.TextBoxFor(m => m.CreatedDate, "{0:d MMM yyyy}", new { @class = "u-full-width", @disabled = "disabled" })
+
+            </div>
+            <div class="four columns">
+                <img class="profile-pic-2" style="width:200px !important;height:200px !important;margin-left:20px !important;" src="@Model.Image" />
+                <span style="margin-left:70px;">Profile Picture</span>
+                <br /><br /><br />
+
+                <a asp-action="Index" class="button" style="margin-left:20px;margin-top:-3px;">Back to Friend Request</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

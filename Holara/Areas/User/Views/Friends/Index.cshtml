@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Holara.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="container">
+    <h4>Find Friends</h4>
+    <div class="panel-footer">
+        <table id="table_id">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                <tr>
+                    <td><img src="@user.Image" class="profile-pic zoom" style="width:35px !important;height:35px !important;margin-top:5px !important" /></td>
+                    <td><span title="See Profile"><a asp-action="UserDetail" asp-route-id="@user.Id" style="cursor:pointer !important; text-decoration:none !important;">@Html.DisplayFor(m => user.Name)</a></span></td>
+                    <td>@Html.DisplayFor(m => user.Email)</td>
+                    <td>@Html.DisplayFor(m => user.PhoneNumber)</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable();
+        });
+    </script>
+}

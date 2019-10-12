@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Holara.Models.Friends>
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+@if (ViewBag.messege != null)
+{
+    <div class="container" id="notification">
+        <div class="panel-footer">
+            <h5 class="notify">@ViewBag.messege</h5>
+        </div>
+    </div>
+}
+
+<div class="container">
+    <h4>Friends</h4>
+    <div class="panel-footer">
+        <table id="table_id">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    if (user.User1Id == UserManager.GetUserId(User) && user.IsConfirmed)
+                    {
+                        <tr>
+                            <td><img src="@user.ApplicationUser2.Image" class="profile-pic zoom" style="width:35px !important;height:35px !important;margin-top:5px !important" /></td>
+                            <td><span title="See Profile"><a asp-action="UserDetail" asp-route-id="@user.ApplicationUser2.Id" style="cursor:pointer !important; text-decoration:none !important;">@Html.DisplayFor(m => user.ApplicationUser2.Name)</a></span></td>
+                            <td>@Html.DisplayFor(m => user.ApplicationUser2.Email)</td>
+                            @if (user.ApplicationUser2.PhoneNumber == null)
+                            {
+                                <td>No Phone Number Added yet..</td>
+                            }
+                            else
+                            {
+                                <td>@Html.DisplayFor(m => user.ApplicationUser2.PhoneNumber)</td>
+                            }
+
+                            <td><a asp-route-id="@user.Id" asp-action="UnFriend" class="button button-danger">Unfriend</a></td>
+                        </tr>
+                    }
+                    else if (user.User2Id == UserManager.GetUserId(User) && user.IsConfirmed)
+                    {
+                        <tr>
+                            <td><img src="@user.ApplicationUser1.Image" class="profile-pic zoom" style="width:35px !important;height:35px !important;margin-top:5px !important" /></td>
+                            <td><span title="See Profile"><a asp-action="UserDetail" asp-route-id="@user.ApplicationUser1.Id" style="cursor:pointer !important; text-decoration:none !important;">@Html.DisplayFor(m => user.ApplicationUser1.Name)</a></span></td>
+                            <td>@Html.DisplayFor(m => user.ApplicationUser1.Email)</td>
+                            @if (user.ApplicationUser1.PhoneNumber == null)
+                            {
+                                <td>No Phone Number Added yet..</td>
+                            }
+                            else
+                            {
+                                <td>@Html.DisplayFor(m => user.ApplicationUser2.PhoneNumber)</td>
+                            }
+                            <td><a asp-route-id="@user.Id" asp-action="UnFriend" class="button button-danger">Unfriend</a></td>
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable();
+        });
+        $("#notification").show();
+        setTimeout(function () { $("#notification").hide(); }, 3000);
+    </script>
+}
+

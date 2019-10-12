@@ -1,0 +1,35 @@
+﻿@model Holara.Models.Post
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<form method="post">
+    @if (@Model.Image != null)
+    {
+        <div class="container">
+            <h4>Are you Sure you want to Delete this Post?</h4>
+            <div class="panel-footer" style="text-align:center;">
+                <img src="@Model.Image" style="object-fit:contain;width:50%;height:50%;border:0.5px solid #caf7fa;border-radius:5px;" />
+                <p style="margin-top:10px;">@Model.PostDescription</p>
+                <br />
+                <button type="submit" class="button button-danger">Delete</button>
+                <a asp-action="Index" class="button">Back to Post</a>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div class="container">
+            <h4>Are you Sure you want to Delete this Post?</h4>
+            <div class="panel-footer" style="text-align:center;">
+                <p style="margin-top:10px;">@Model.PostDescription</p>
+                <br />
+                <button type="submit" class="button button-danger">Delete</button>
+                <a asp-action="Index" class="button">Back to Post</a>
+            </div>
+        </div>
+    }
+</form>
+

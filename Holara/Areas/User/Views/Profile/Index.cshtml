@@ -1,0 +1,53 @@
+﻿@model Holara.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+@if (ViewBag.messege != null)
+{
+    <div class="container" id="notification">
+        <div class="panel-footer">
+            <h5 class="notify">@ViewBag.messege</h5>
+        </div>
+    </div>
+}
+
+<div class="container">
+    <h4>@Model.Name 's &nbsp; Profile</h4>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="eight columns">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" readonly class="u-full-width" />
+                <label asp-for="UserName">User Name</label>
+                <input asp-for="UserName" readonly class="u-full-width" />
+                <label asp-for="Email"></label>
+                <input asp-for="Email" readonly class="u-full-width" />
+                <label asp-for="PhoneNumber">Phone Number</label>
+                @if (Model.PhoneNumber == null)
+                {
+                    <input asp-for="PhoneNumber" readonly class="u-full-width" value="No Phone Number Added yet" />
+                }
+                else
+                {
+                    <input asp-for="PhoneNumber" readonly class="u-full-width" />
+
+                }
+
+            </div>
+            <div class="four columns">
+                <img class="profile-pic-2" src="@Model.Image" />
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="button button-primary" style="margin-top:168px;">Edit your Profile</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $("#notification").show();
+        setTimeout(function () { $("#notification").hide(); }, 3000);
+    </script>
+}
+

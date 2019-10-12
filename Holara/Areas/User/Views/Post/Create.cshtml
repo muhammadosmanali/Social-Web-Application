@@ -1,0 +1,35 @@
+﻿@model Holara.Models.Post
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+<form method="post" enctype="multipart/form-data">
+    <div class="container">
+        <h4>Add New Post</h4>
+        <div class="panel-footer">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <label asp-for="PostDescription"></label>
+                <textarea asp-for="PostDescription" class="u-full-width" placeholder="Write your post here....." id="exampleMessage"></textarea>
+                <span asp-validation-for="PostDescription" class="text-danger"></span>
+                <label asp-for="Image"></label>
+                <input type="file" name="files" />
+                <br />
+                <br />
+                <input type="checkbox" asp-for="IsPublicOrNot">
+                <span class="label-body">Public</span>
+                <br />
+                <br />
+                <button type="submit" class="button button-primary">Add</button>
+                <a asp-action="Index" class="button">Back to Posts</a>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

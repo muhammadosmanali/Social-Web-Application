@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Holara.Models.Post>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+@if (ViewBag.messege != null)
+{
+    <div class="container" id="notification">
+        <div class="panel-footer">
+            <h5 class="notify">@ViewBag.messege</h5>
+        </div>
+    </div>
+}
+
+
+@if (Model.Count() > 0)
+{
+    foreach (var post in Model)
+    {
+        if (post.Image != null)
+        {
+            <div class="container hide">
+                <div class="panel-header">
+                    <img class="profile-pic" src="@post.User.Image">
+                    <label class="user-name">&commat;&nbsp;@Html.DisplayFor(m => post.User.Name)<br><span class="date">&nbsp;&nbsp;@post.PostDateAndTime.ToLongDateString()&nbsp;&nbsp;@post.PostDateAndTime.ToLongTimeString()</span></label>
+                </div>
+                <div class="panel-body1">
+                    <img class="post-image" src="@post.Image">
+                    <div class="post-desc">
+                        <p>@post.PostDescription</p>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <a class="button" asp-action="Edit" asp-route-id="@post.Id">Edit</a>
+                    <a class="button button-danger" asp-action="Delete" asp-route-id="@post.Id">Delete</a>
+
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="container hide">
+                <div class="panel-header">
+                    <img class="profile-pic" src="@post.User.Image">
+                    <label class="user-name">&commat;&nbsp;@Html.DisplayFor(m => post.User.Name)<br><span class="date">&nbsp;&nbsp;@post.PostDateAndTime.ToLongDateString()&nbsp;&nbsp;@post.PostDateAndTime.ToLongTimeString()</span></label>
+                </div>
+                <div class="panel-body1">
+                    <div class="post-desc">
+                        <p>@post.PostDescription</p>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <a class="button" asp-action="Edit" asp-route-id="@post.Id">Edit</a>
+                    <a class="button" asp-action="Delete" asp-route-id="@post.Id" style="background-color:#ff4040 !important; color: #faf0f0 !important;">Delete</a>
+                </div>
+            </div>
+        }
+    }
+}
+else
+{
+    <div class="container hide">
+        <div class="panel-header">
+            <h5>No Post Added Yet............</h5>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+        $("#notification").show();
+        setTimeout(function () { $("#notification").hide(); }, 3000);
+    </script>
+}
+

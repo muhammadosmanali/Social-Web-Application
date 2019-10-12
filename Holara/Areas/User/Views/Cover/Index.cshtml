@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Holara.Models.Post>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+@if (Model.Count() > 0)
+{
+    foreach (var post in Model)
+    {
+        if (post.IsPublicOrNot)
+        {
+            if (post.Image != null)
+            {
+                <div class="container hide">
+                    <div class="panel-header">
+                        <img class="profile-pic" src="@post.User.Image">
+                        <label class="user-name">&commat;&nbsp;@Html.DisplayFor(m => post.User.Name)<br><span class="date">&nbsp;&nbsp;@post.PostDateAndTime.ToLongDateString()&nbsp;&nbsp;@post.PostDateAndTime.ToLongTimeString()</span></label>
+                    </div>
+                    <div style="border-bottom-left-radius:15px !important;border-bottom-right-radius:15px !important;" class="panel-body2">
+                        <img class="post-image" src="@post.Image">
+                        <div class="post-desc">
+                            <p>@post.PostDescription</p>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            }
+            else
+            {
+                <div class="container hide">
+                    <div class="panel-header">
+                        <img class="profile-pic" src="@post.User.Image">
+                        <label class="user-name">&commat;&nbsp;@Html.DisplayFor(m => post.User.Name)<br><span class="date">&nbsp;&nbsp;@post.PostDateAndTime.ToLongDateString()&nbsp;&nbsp;@post.PostDateAndTime.ToLongTimeString()</span></label>
+                    </div>
+                    <div style="border-bottom-left-radius:15px !important;border-bottom-right-radius:15px !important;" class="panel-body2">
+                        <div class="post-desc">
+                            <p>@post.PostDescription</p>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            }
+        }
+    }
+}
+else
+{
+    <div class="container hide">
+        <div class="panel-header">
+            <h5>No Post Added Yet............</h5>
+        </div>
+    </div>
+}
+

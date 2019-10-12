@@ -1,0 +1,46 @@
+﻿@model Holara.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div class="container">
+        <h4>@Model.Name 's &nbsp; Profile</h4>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="eight columns">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input hidden asp-for="@Model.Id" />
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" required class="u-full-width" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                    <label asp-for="UserName">User Name</label>
+                    <input asp-for="UserName" required class="u-full-width" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="u-full-width" />
+                    <span asp-validation-for="Email" required class="text-danger"></span>
+                    <label asp-for="PhoneNumber">Phone Number</label>
+                    @if (Model.PhoneNumber == null)
+                    {
+                        <input asp-for="PhoneNumber" class="u-full-width" placeholder="No Phone Number Added yet" />
+                    }
+                    else
+                    {
+                        <input asp-for="PhoneNumber" class="u-full-width" />
+
+                    }
+                    <label asp-for="Image"></label>
+                    <input type="file" name="files" />
+
+                </div>
+                <div class="four columns">
+                    <button type="submit" class="button button-success" style="margin-top:300px;">Update your Profile</button>
+                    <a asp-action="Index" class="button">Back to Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
